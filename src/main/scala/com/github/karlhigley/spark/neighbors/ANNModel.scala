@@ -4,7 +4,6 @@ import org.apache.spark.rdd.RDD
 import org.apache.spark.mllib.linalg.SparseVector
 import org.apache.spark.mllib.rdd.MLPairRDDFunctions._
 import org.apache.spark.storage.StorageLevel
-
 import com.github.karlhigley.spark.neighbors.collision.CollisionStrategy
 import com.github.karlhigley.spark.neighbors.linalg.DistanceMeasure
 import com.github.karlhigley.spark.neighbors.lsh.{ HashTableEntry, LSHFunction, Signature }
@@ -30,7 +29,10 @@ class ANNModel private[neighbors] (
    * the actual distance between candidate pairs.
    */
   def neighbors(quantity: Int): RDD[(Long, Array[(Long, Double)])] = {
-    val candidates = collisionStrategy.apply(hashTables).groupByKey(hashTables.getNumPartitions).values
+    val candidates = collisionStrategy
+      .apply(hashTables)
+      .groupByKey(hashTables.getNumPartitions)
+      .values
     val neighbors = computeDistances(candidates)
     neighbors.topByKey(quantity)(ANNModel.ordering)
   }
@@ -57,7 +59,10 @@ class ANNModel private[neighbors] (
    * dataset. (See "Modeling LSH for Performance Tuning" in CIKM '08.)
    */
   def avgSelectivity(): Double = {
-    val candidates = collisionStrategy.apply(hashTables).groupByKey(hashTables.getNumPartitions).values
+    val candidates = collisionStrategy
+      .apply(hashTables)
+      .groupByKey(hashTables.getNumPartitions)
+      .values
 
     val candidateCounts =
       candidates
@@ -101,7 +106,9 @@ class ANNModel private[neighbors] (
    * Compute the actual distance between candidate pairs
    * using the supplied distance measure.
    */
-  private def computeBipartiteDistances(candidates: RDD[(CandidateGroup, CandidateGroup)]): RDD[(Long, (Long, Double))] = {
+  private def computeBipartiteDistances(
+    candidates: RDD[(CandidateGroup, CandidateGroup)]
+  ): RDD[(Long, (Long, Double))] = {
     candidates
       .flatMap {
         case (groupA, groupB) => {
@@ -151,7 +158,7 @@ object ANNModel {
     points.flatMap {
       case (id, vector) =>
         indHashFunctions.map {
-          case (hashFunc, table) =>
+          case (hashFunc: LSHFunction[_], table: Int) =>
             hashFunc.hashTableEntry(id, table, vector)
         }
     }

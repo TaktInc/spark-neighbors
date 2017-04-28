@@ -6,11 +6,11 @@ description := "Spark-based approximate nearest neighbor search using locality-s
 
 version := "0.2.2"
 
-scalaVersion := "2.10.5"
+scalaVersion := "2.11.8"
 
 spName := "karlhigley/spark-neighbors"
 
-sparkVersion := "1.6.0"
+sparkVersion := "2.0.2"
 
 sparkComponents := Seq("core", "mllib")
 
@@ -43,7 +43,7 @@ spIncludeMaven := true
 
 licenses += ("MIT", url("http://opensource.org/licenses/MIT"))
 
-credentials += Credentials(Path.userHome / ".ivy2" / ".spark-package-credentials")
+//credentials += Credentials(Path.userHome / ".ivy2" / ".spark-package-credentials")
 
 publishTo := {
   val nexus = "https://oss.sonatype.org/"
