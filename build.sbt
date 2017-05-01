@@ -4,7 +4,7 @@ organization := "com.github.karlhigley"
 
 description := "Spark-based approximate nearest neighbor search using locality-sensitive hashing"
 
-version := "0.2.2"
+version := "0.3.0-SNAPSHOT"
 
 scalaVersion := "2.11.8"
 
@@ -43,8 +43,9 @@ spIncludeMaven := true
 
 licenses += ("MIT", url("http://opensource.org/licenses/MIT"))
 
-//credentials += Credentials(Path.userHome / ".ivy2" / ".spark-package-credentials")
+// credentials += Credentials(Path.userHome / ".ivy2" / ".spark-package-credentials")
 
+/*
 publishTo := {
   val nexus = "https://oss.sonatype.org/"
   if (version.value.endsWith("SNAPSHOT"))
@@ -52,6 +53,7 @@ publishTo := {
   else
     Some("releases"  at nexus + "service/local/staging/deploy/maven2")
 }
+*/
 
 pomExtra := (
   <url>https://github.com/karlhigley/spark-neighbors</url>

@@ -13,7 +13,7 @@ import com.github.karlhigley.spark.neighbors.lsh.{ HashTableEntry, LSHFunction, 
  * for each supplied vector.
  */
 class ANNModel private[neighbors] (
-    private[neighbors] val hashTables: RDD[_ <: HashTableEntry[_]],
+    val hashTables: RDD[_ <: HashTableEntry[_]],
     private[neighbors] val hashFunctions: Array[_ <: LSHFunction[_]],
     private[neighbors] val collisionStrategy: CollisionStrategy,
     private[neighbors] val measure: DistanceMeasure,
