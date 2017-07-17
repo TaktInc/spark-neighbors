@@ -1,6 +1,6 @@
 name := "spark-neighbors"
 
-organization := "com.github.karlhigley"
+organization := "com.takt"
 
 description := "Spark-based approximate nearest neighbor search using locality-sensitive hashing"
 
@@ -8,7 +8,7 @@ version := "0.3.0"
 
 scalaVersion := "2.11.8"
 
-spName := "karlhigley/spark-neighbors"
+spName := "takt/spark-neighbors"
 
 sparkVersion := "2.0.2"
 
@@ -55,19 +55,19 @@ publishTo := {
 }
 */
 
-publishTo := Some("Spark Neighbors" at "s3://releases.mvn-repo.takt.com")
+publishTo := Some("somatix-dev s3 releases repo" at "s3://releases.mvn-repo.takt.com")
 
 pomExtra := (
-  <url>https://github.com/karlhigley/spark-neighbors</url>
+  <url>https://github.com/TaktInc/spark-neighbors</url>
   <scm>
-    <url>git@github.com:karlhigley/spark-neighbors.git</url>
-    <connection>scm:git:git@github.com:karlhigley/spark-neighbors.git</connection>
+    <url>git@github.com:TaktInc/spark-neighbors.git</url>
+    <connection>scm:git:git@github.com:TaktInc/spark-neighbors.git</connection>
   </scm>
   <developers>
     <developer>
-      <id>karlhigley</id>
-      <name>Karl Higley</name>
-      <url>https://github.com/karlhigley</url>
+      <id>takt</id>
+      <name>Takt Inc</name>
+      <url>https://github.com/TaktInc</url>
     </developer>
   </developers>)
 
