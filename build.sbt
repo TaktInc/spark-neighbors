@@ -4,7 +4,7 @@ organization := "com.github.karlhigley"
 
 description := "Spark-based approximate nearest neighbor search using locality-sensitive hashing"
 
-version := "0.3.0-SNAPSHOT"
+version := "0.3.0"
 
 scalaVersion := "2.11.8"
 
@@ -54,6 +54,8 @@ publishTo := {
     Some("releases"  at nexus + "service/local/staging/deploy/maven2")
 }
 */
+
+publishTo := Some("Spark Neighbors" at "s3://releases.mvn-repo.takt.com")
 
 pomExtra := (
   <url>https://github.com/karlhigley/spark-neighbors</url>
